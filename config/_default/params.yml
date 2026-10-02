@@ -7,16 +7,16 @@
 menu:
   - name: home
     url: ""
-    icon: # default use taichi icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
+    icon: false # Use text-only navigation for the character-themed visual system
   - name: archives
     url: "archives"
-    icon:
+    icon: false
   - name: about
     url: "about"
-    icon:
+    icon: false
   - name: friend
     url: "friend"
-    icon:
+    icon: false
 
 # friend links
 friends:
@@ -33,7 +33,7 @@ timeFormat: "2006-01-02 15:04:05"
 author: Ilwren
 email:
 description: "记录技术、阅读与生活"
-# subtitle: "少女祈祷中..."
+# subtitle: "紫色星光，记录技术与生活"
 subtitle:
   typing:
     enable: false
@@ -47,11 +47,11 @@ subtitle:
     backDelay: 2000             # 打完一句话后，等待时间
     startDelay: 300             # 页面加载后，等待时间
     loop: true                  # 是否循环播放
-    shuffle: true              # 是否随机输出句子
+    shuffle: true               # 是否随机输出句子
     showCursor: true            # 是否显示闪烁的字符
     cursorChar: "|"             # 字符
     smartBackspace: false       # 智能退格，只删除不同的部分
-  text: "少女祈祷中..."        # 当 typing.enable = false 时使用
+  text: "紫色星光，记录技术与生活"        # 当 typing.enable = false 时使用
 
 banner: false # 暂时移除横幅图片，使用下方的 CSS 占位背景
 # You can also write it in the form of the following url
@@ -107,11 +107,11 @@ copyright:
 
 footer:
   since: 2020 # 2020-current year
-  powered: true
+  powered: false
   count: true
   busuanzi: false
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    url: "../images/sparkle.svg" # this path is relative to the css/main.css
     rotate: true
     mask: true # whether to use the images as a mask
 
@@ -219,7 +219,7 @@ anchor_icon: # default use '#' icon, you can use a hexadecimal representation of
 reimu_cursor:
   enable: false
   cursor:
-    default: ../images/cursor/reimu-cursor-default.png  # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    default: ../images/cursor/reimu-cursor-default.png  # this path is relative to the css/main.css
     pointer: ../images/cursor/reimu-cursor-pointer.png
     text: ../images/cursor/reimu-cursor-text.png
 
@@ -498,14 +498,14 @@ algolia_search:
 ########################################
 
 preloader:
-  enable: false
+  enable: true
   text: 
-    zh-CN: 少女祈祷中...
-    zh-TW: 少女祈禱中...
+    zh-CN: 星光加载中...
+    zh-TW: 星光載入中...
     en: Loading...
-    ja: 少女祈祷中...
+    ja: 星明かりを読み込み中...
     pt-BR: Carregando...
-  icon: # default use inline svg for fast speed, you can use a image url, like '/images/taichi.png'
+  icon: "images/sparkle.svg" # local character-theme loading icon
   rotate: true # whether to rotate the icon
 
 # see https://github.com/D-Sketon/aos.js
@@ -582,7 +582,7 @@ top:
   enable: true
   position: right # left or right
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    url: "../images/sparkle.svg" # this path is relative to the css/main.css
     rotate: true
     mask: true # whether to use the images as a mask
 
@@ -617,7 +617,7 @@ sponsor:
     ja: コーヒーを買ってください
     pt-BR: Compre-me um café
   icon:
-    url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
+    url: "../images/sparkle.svg" # this path is relative to the css/main.css
     rotate: true
     mask: true # whether to use the images as a mask
   qr:
@@ -639,12 +639,10 @@ share:
 
 # show categories card on home page
 home_categories:
-  enable: false
+  enable: true
   content:
-    - categories: # string (single-layer category) or array (multi-layer category)
-      cover: # empty means random cover
-    - categories:
-      cover:
+    - categories: test
+      cover: images/cover-placeholder.svg
 
 ########################################
 # Experimental features
@@ -755,6 +753,47 @@ injector:
 
       [data-theme="dark"] .post-cover {
         background: linear-gradient(135deg, #3a2860, #512c4e) !important;
+      }
+
+      /* Replace Reimu's double-outline sidebar buttons with soft cards. */
+      .sidebar-menu-link-wrap {
+        width: min(78%, 218px);
+        margin: 8px auto;
+        border: 1px solid rgba(120, 80, 211, 0.22);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.48);
+        box-shadow: 0 6px 18px rgba(80, 48, 130, 0.08);
+        transform: translateY(0);
+      }
+
+      .sidebar-menu-link-wrap:hover {
+        border: 1px solid var(--color-link);
+        background: var(--red-5);
+        box-shadow: 0 9px 22px rgba(113, 69, 196, 0.16);
+        transform: translateY(-2px);
+      }
+
+      .sidebar-menu-link {
+        color: var(--color-link);
+        letter-spacing: 0.04em;
+      }
+
+      .sidebar-menu-link-wrap.link-active,
+      .sidebar-menu-link-wrap.link-active:hover {
+        border: 1px solid var(--color-link);
+        background: linear-gradient(135deg, #8d65dc, #b06ce8);
+        box-shadow: 0 8px 20px rgba(113, 69, 196, 0.24);
+      }
+
+      [data-theme="dark"] .sidebar-menu-link-wrap {
+        border-color: rgba(198, 168, 255, 0.26);
+        background: rgba(58, 40, 96, 0.46);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+      }
+
+      [data-theme="dark"] .sidebar-menu-link-wrap:hover {
+        background: rgba(143, 112, 204, 0.2);
+        box-shadow: 0 9px 22px rgba(0, 0, 0, 0.3);
       }
     </style>
   body_begin: # Inject code snippet right after <body>
