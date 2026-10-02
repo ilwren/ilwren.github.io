@@ -30,9 +30,9 @@ monthFormat: "2006-01"
 dateFormat: "2006-01-02"
 timeFormat: "2006-01-02 15:04:05"
 
-author: D-Sketon
-email: xxx@example.com
-description: "少女祈祷中..."
+author: Ilwren
+email:
+description: "记录技术、阅读与生活"
 # subtitle: "少女祈祷中..."
 subtitle:
   typing:
@@ -53,7 +53,7 @@ subtitle:
     smartBackspace: false       # 智能退格，只删除不同的部分
   text: "少女祈祷中..."        # 当 typing.enable = false 时使用
 
-banner: "images/banner.webp"
+banner: false # 暂时移除横幅图片，使用下方的 CSS 占位背景
 # You can also write it in the form of the following url
 # banner: "https://example.com"
 
@@ -73,7 +73,7 @@ avatar: "avatar.webp"
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
 # Its priority is lower than the cover in the Front-matter
-cover: # https://example.com / false / rgb(255,117,117)
+cover: false # 暂时关闭文章页横幅和默认封面
 
 # Control the display of the post toc
 # Its priority is lower than the toc in the Front-matter
@@ -92,7 +92,7 @@ open_graph:
     #fb_app_id: <fb:app_id>
 
 # Content
-excerpt_link: Read More
+excerpt_link: 阅读全文
 
 # Footer copyright
 # Inject code snippet right in the footer copyright
@@ -217,7 +217,7 @@ triangle_badge:
 anchor_icon: # default use '#' icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1', you can also use false to hide anchor icon
 
 reimu_cursor:
-  enable: true
+  enable: false
   cursor:
     default: ../images/cursor/reimu-cursor-default.png  # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
     pointer: ../images/cursor/reimu-cursor-pointer.png
@@ -239,7 +239,7 @@ custom_font:
 # https://fonts.google.com/
 # Google Fonts, higher priority than local_font
 font:
-  enable: true
+  enable: false
   article:
     - Mulish
     - Noto Serif SC
@@ -497,7 +497,7 @@ algolia_search:
 ########################################
 
 preloader:
-  enable: true
+  enable: false
   text: 
     zh-CN: 少女祈祷中...
     zh-TW: 少女祈禱中...
@@ -535,7 +535,7 @@ animation:
 
 # see https://github.com/D-Sketon/mouse-firework
 firework:
-  enable: true
+  enable: false
   disable_on_mobile: false
   options:
     excludeElements: ["a", "button"]
@@ -653,7 +653,108 @@ home_categories:
 # Make sure your code snippet is safeHTML
 injector:
   head_begin: # Inject code snippet right after <head>
-  head_end: # Inject code snippet right before </head>
+  head_end: |
+    <style>
+      /*
+       * Site palette: misty teal, warm sand and paper white.
+       * This is intentionally injected after Reimu's compiled CSS so the
+       * theme submodule can be upgraded without editing it.
+       */
+      :root {
+        --color-default: #2d3b3a;
+        --color-background: #f3f0e9;
+        --color-code-background: #edf2ef;
+        --color-header-background: rgba(250, 248, 242, 0.92);
+        --color-footer-background: #e7eee9;
+        --color-mobile-nav-background: #faf8f2;
+        --color-wrap: #fffdf8;
+        --color-sticky: #f7eadc;
+        --color-h2-border: #d8e1dc;
+        --color-h2-after: #c97955;
+        --color-meta-shadow: rgba(48, 111, 105, 0.24);
+        --color-hover-shadow: rgba(45, 59, 58, 0.13);
+        --color-link: #2f7772;
+        --site-header-ink: #254f4c;
+        --site-header-soft: #53716c;
+      }
+
+      [data-theme="dark"] {
+        --color-default: #d7e2dd;
+        --color-background: #1c2928;
+        --color-code-background: #223331;
+        --color-header-background: rgba(28, 41, 40, 0.94);
+        --color-footer-background: #172322;
+        --color-mobile-nav-background: #223331;
+        --color-wrap: #243431;
+        --color-sticky: #3a3028;
+        --color-h2-border: #3c514d;
+        --color-h2-after: #d48b68;
+        --color-meta-shadow: rgba(0, 0, 0, 0.28);
+        --color-hover-shadow: rgba(0, 0, 0, 0.28);
+        --color-link: #9ed1bf;
+        --site-header-ink: #dcebe5;
+        --site-header-soft: #aecbc0;
+        --red-0: #a9d4c2;
+        --red-1: #82bfae;
+        --red-2: #a8d8c7;
+        --red-3: #5b8c80;
+        --red-4: rgba(169, 212, 194, 0.28);
+        --red-5: rgba(169, 212, 194, 0.16);
+        --red-5-5: rgba(169, 212, 194, 0.09);
+        --red-6: rgba(169, 212, 194, 0.06);
+      }
+
+      /* The header stays image-free until a real banner is selected. */
+      #header {
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.72), transparent 30%),
+          radial-gradient(circle at 82% 12%, rgba(201, 121, 85, 0.14), transparent 34%),
+          linear-gradient(135deg, #dcebe3 0%, #f5eee4 52%, #e6d8ca 100%);
+      }
+
+      #header > img[style*="visibility: hidden"] {
+        display: none !important;
+      }
+
+      [data-theme="dark"] #header {
+        background:
+          radial-gradient(circle at 18% 32%, rgba(115, 171, 151, 0.16), transparent 30%),
+          radial-gradient(circle at 82% 12%, rgba(212, 139, 104, 0.16), transparent 34%),
+          linear-gradient(135deg, #243b37 0%, #303331 52%, #40362f 100%);
+      }
+
+      #header-outer {
+        z-index: 0;
+      }
+
+      #logo,
+      #subtitle {
+        color: var(--site-header-ink) !important;
+        text-shadow: none !important;
+      }
+
+      #subtitle {
+        opacity: 0.86;
+      }
+
+      #header-nav {
+        background: var(--color-header-background);
+        box-shadow: 0 1px 0 rgba(47, 119, 114, 0.12), 0 6px 20px rgba(45, 59, 58, 0.08);
+      }
+
+      #header-nav:hover {
+        background: var(--color-header-background);
+      }
+
+      .post-cover {
+        background: linear-gradient(135deg, #dcebe3, #f1e2d5) !important;
+      }
+
+      [data-theme="dark"] .post-cover {
+        background: linear-gradient(135deg, #294641, #493a32) !important;
+      }
+    </style>
   body_begin: # Inject code snippet right after <body>
   body_end: # Inject code snippet right before </body>
   sidebar_begin: # Inject code snippet right after <aside>
@@ -692,7 +793,7 @@ live2d_widgets:
 
 # https://github.com/CodeByZach/pace
 pace:
-  enable: true
+  enable: false
 
 # Experimental
 # Please turn on pjax to use this feature
@@ -730,8 +831,8 @@ player:
 ########################################
 
 pangu:
-  # more information: https://github.com/vinta/pangu.js 
-  enable: false  # enable pangu.js to add space between Chinese and English
+  # more information: https://github.com/vinta/pangu.js
+  enable: true  # enable pangu.js to add space between Chinese and English
 
 ########################################
 # Theme
@@ -746,55 +847,64 @@ material_theme:
   enable: false # enable material_theme to generate dynamic color schemes based on the banner image
 
 internal_theme:
+  # Reimu keeps these names for compatibility; the values form a muted
+  # teal / warm-sand palette instead of the original bright red theme.
   light:
-    --red-0: '#ff0000'
-    --red-1: '#ff5252'
-    --red-2: '#ff7c7c'
-    --red-3: '#ffafaf'
-    --red-4: '#ffd0d0'
-    --red-5: '#ffecec'
-    --red-5-5: '#fff3f3'
-    --red-6: '#fff7f7'
-    --color-red-6-shadow: 'rgba(255, 78, 78, 0.6)'
-    --color-red-3-shadow: 'rgba(255, 78, 78, 0.3)'
+    --red-0: '#286b68'
+    --red-1: '#3f8f89'
+    --red-2: '#70b2a8'
+    --red-3: '#a8d1c7'
+    --red-4: '#cfe4dc'
+    --red-5: '#e8f0eb'
+    --red-5-5: '#f0f5f0'
+    --red-6: '#f6faf7'
+    --color-red-6-shadow: 'rgba(63, 143, 137, 0.35)'
+    --color-red-3-shadow: 'rgba(63, 143, 137, 0.2)'
 
-    --highlight-nav: "#f5f5f5"
-    --highlight-scrollbar: "#d6d6d6"
-    --highlight-background: "#fdfdfd"
-    --highlight-selection: "#e9e9e988"
-    --highlight-foreground: "#24292e"
-    --highlight-comment: "#7d7d7d"
-    --highlight-red: "#d73a49"
-    --highlight-orange: "#e36209"
-    --highlight-yellow: "#cb911d"
-    --highlight-green: "#22863a"
-    --highlight-aqua: "#005cc5"
-    --highlight-blue: "#032f62"
-    --highlight-purple: "#6f42c1"
-    --highlight-deletion: "#b31d28"
-    --highlight-deletion-bg: "#ffeef0"
-    --highlight-addition: "#22863a"
-    --highlight-addition-bg: "#f0fff4"
+    --highlight-nav: '#e7efeb'
+    --highlight-scrollbar: '#b7cbc3'
+    --highlight-background: '#f5f7f3'
+    --highlight-selection: '#b7d8ce88'
+    --highlight-foreground: '#2d3b3a'
+    --highlight-comment: '#778b84'
+    --highlight-red: '#b85c55'
+    --highlight-orange: '#b66e43'
+    --highlight-yellow: '#9a782c'
+    --highlight-green: '#4e7b5d'
+    --highlight-aqua: '#2f7772'
+    --highlight-blue: '#426786'
+    --highlight-purple: '#795f86'
+    --highlight-deletion: '#a94f53'
+    --highlight-deletion-bg: '#fae9e4'
+    --highlight-addition: '#4e765a'
+    --highlight-addition-bg: '#e7f1e8'
+
   dark:
-    --red-4: 'rgba(255, 208, 208, 0.5)'
-    --red-5: 'rgba(255,228,228,0.15)'
-    --red-5-5: 'rgba(255,236,236,0.05)'
-    --red-6: 'rgba(255, 243, 243, 0.2)'
+    --red-0: '#a9d4c2'
+    --red-1: '#82bfae'
+    --red-2: '#a8d8c7'
+    --red-3: '#5b8c80'
+    --red-4: 'rgba(169, 212, 194, 0.28)'
+    --red-5: 'rgba(169, 212, 194, 0.16)'
+    --red-5-5: 'rgba(169, 212, 194, 0.09)'
+    --red-6: 'rgba(169, 212, 194, 0.06)'
+    --color-red-6-shadow: 'rgba(130, 191, 174, 0.35)'
+    --color-red-3-shadow: 'rgba(130, 191, 174, 0.2)'
 
-    --highlight-nav: "#222830"
-    --highlight-scrollbar: "#454d59"
-    --highlight-background: "#1e2027"
-    --highlight-selection: "#51515155"
-    --highlight-foreground: "#c9d1d9"
-    --highlight-comment: "#8b949e"
-    --highlight-red: "#ff7b72"
-    --highlight-orange: "#ffa657"
-    --highlight-yellow: "#ffcc66"
-    --highlight-green: "#7ee787"
-    --highlight-aqua: "#a5d6ff"
-    --highlight-blue: "#79c0ff"
-    --highlight-purple: "#d2a8ff"
-    --highlight-deletion: "#ffa198"
-    --highlight-deletion-bg: "#490202"
-    --highlight-addition: "#7ee787"
-    --highlight-addition-bg: "#04260f"
+    --highlight-nav: '#263a37'
+    --highlight-scrollbar: '#526963'
+    --highlight-background: '#1f2d2b'
+    --highlight-selection: '#6a988b55'
+    --highlight-foreground: '#d7e2dd'
+    --highlight-comment: '#92a9a0'
+    --highlight-red: '#ee948b'
+    --highlight-orange: '#e5a06e'
+    --highlight-yellow: '#e3c176'
+    --highlight-green: '#94c99b'
+    --highlight-aqua: '#9ed1bf'
+    --highlight-blue: '#9cc4e2'
+    --highlight-purple: '#c2a7d3'
+    --highlight-deletion: '#f0a29e'
+    --highlight-deletion-bg: '#552b2b'
+    --highlight-addition: '#a5d6ad'
+    --highlight-addition-bg: '#203c2a'

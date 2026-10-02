@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Cover placeholder</title>
+  <desc id="desc">A soft teal and warm sand abstract placeholder.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dcebe3"/>
+      <stop offset="0.55" stop-color="#f5eee4"/>
+      <stop offset="1" stop-color="#e6d8ca"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.18" cy="0.28" r="0.55">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#paper)"/>
+  <rect width="1200" height="700" fill="url(#glow)"/>
+  <circle cx="965" cy="90" r="230" fill="#c97955" fill-opacity="0.12"/>
+  <path d="M0 540C210 430 360 650 580 520s350-20 620 70v110H0z" fill="#3f8f89" fill-opacity="0.14"/>
+  <path d="M0 610c210-90 370 70 590-20 220-90 390-40 610 20v90H0z" fill="#286b68" fill-opacity="0.08"/>
+</svg>
