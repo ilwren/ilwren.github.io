@@ -1,19 +1,19 @@
-{{- $repo := .Get "repo" | default "ilwren/ilwren.github.io" -}}
-<section class="github-activity" data-github-repo="{{ $repo }}" aria-label="GitHub commit activity">
+{{- $account := .Get "account" | default "ilwren" -}}
+<section class="github-activity" data-github-account="{{ $account }}" aria-label="GitHub account contribution activity">
   <div class="github-activity-header">
     <div>
-      <div class="github-activity-kicker">GITHUB ACTIVITY</div>
-      <h3 class="github-activity-title">提交活动</h3>
+      <div class="github-activity-kicker">GITHUB ACCOUNT ACTIVITY</div>
+      <h3 class="github-activity-title">账号贡献活动</h3>
     </div>
-    <a href="https://github.com/{{ $repo }}" target="_blank" rel="noopener noreferrer">{{ $repo }} ↗</a>
+    <a href="https://github.com/{{ $account }}" target="_blank" rel="noopener noreferrer">@{{ $account }} ↗</a>
   </div>
   <div class="github-activity-summary">
-    <strong data-github-commit-total>加载中</strong>
-    <span>近一年提交</span>
+    <strong data-github-contribution-total>加载中</strong>
+    <span>近一年贡献</span>
     <span class="github-activity-dot">·</span>
     <span data-github-active-weeks>统计中</span>
   </div>
-  <div class="github-activity-scroll" role="img" aria-label="近一年 GitHub 提交活动图表">
+  <div class="github-activity-scroll" role="img" aria-label="近一年 GitHub 账号贡献活动图表">
     <div class="github-activity-grid" data-github-activity-grid></div>
   </div>
   <div class="github-activity-legend" aria-hidden="true">
@@ -21,5 +21,5 @@
     <i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i>
     <span>多</span>
   </div>
-  <p class="github-activity-note" data-github-activity-note>数据由 GitHub Actions 构建时从 GitHub API 获取。</p>
+  <p class="github-activity-note" data-github-activity-note>数据由 GitHub Actions 构建时获取账号贡献日历。</p>
 </section>

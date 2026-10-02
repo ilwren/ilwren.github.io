@@ -33,9 +33,9 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
-      - name: Prepare GitHub commit activity
+      - name: Prepare GitHub account activity
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTIVITY_ACCOUNT: ilwren
         run: ./scripts/fetch-github-activity.sh
 
       - name: Build site

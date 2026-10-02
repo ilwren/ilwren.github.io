@@ -50,7 +50,7 @@ hugo server -D
 - `techStack`：技术栈标签。
 - `projectCard`：项目展示卡片。
 - `aiTrace`：记录 Vibe Coding 使用的工具、模型和验证状态。
-- `githubActivity`：显示 `ilwren/ilwren.github.io` 近 52 周的 GitHub commit 活动。
+- `githubActivity`：显示 GitHub 账号 `ilwren` 近 52 周的账号贡献活动（不是单个仓库统计）。
 
 创建新文章时，`archetypes/default.md` 会自动提供分类、标签、系列、.NET 版本、代码仓库和 AI 协作字段。
 
@@ -66,16 +66,20 @@ hugo server -D
 
 评论功能由主题已有的站点层配置加载，配置入口是 `config/_default/params.yml` 的 `comment` 和 `utterances` 字段。若改用 GitHub Discussions，可以切换到 Giscus，但需要从 `giscus.app` 获取 `repoId` 和 `categoryId`。
 
-## GitHub Commit 统计
+## GitHub 账号贡献统计
 
-关于页的 GitHub 活动组件展示目标仓库最近一年的：
+关于页的 GitHub 活动组件现在展示账号 `ilwren` 最近一年的：
 
-- 提交总数；
-- 有提交的周数；
-- 52 周提交活动图；
-- GitHub 仓库链接。
+- 账号贡献总数；
+- 有贡献的周数；
+- 52 周贡献活动图；
+- GitHub 个人主页链接。
 
-每次 GitHub Actions 构建都会调用公开的 GitHub REST API `stats/commit_activity`，把结果生成到构建产物中的 `data/github-commit-activity.json`，再由本地 `static/js/github-activity.js` 绘图。访客浏览器不会直接请求 GitHub API，也未引入 Google Analytics、Clarity、不蒜子或其它访问统计服务。统计 API 偶尔会返回 `202` 表示 GitHub 正在计算数据，工作流会重试；若仍不可用，本次构建会使用空快照，下一次构建会再次获取。
+这里的“贡献”使用 GitHub 账号贡献日历的口径，包含公开仓库中的提交，以及 GitHub 计入贡献日历的 Pull Request、Issue、Review 等活动；它不是单个仓库的 `stats/commit_activity` 数据。如果只需要严格意义上的 commit 数量，需要另行使用 GitHub GraphQL 的 `totalCommitContributions`，那通常需要在 Actions 中配置额外的个人访问令牌。
+
+每次 GitHub Actions 构建都会从第三方 [GitHub Contributions API](https://github-contributions-api.jogruber.de/) 获取账号贡献数据，生成构建产物中的 `data/github-account-activity.json`，再由本地 `static/js/github-activity.js` 绘图。第三方接口结果会缓存约一小时；工作流还会回退到 GitHub 的公开个人贡献日历。访客浏览器只读取站点自己的静态 JSON，不会直接请求 GitHub 或第三方接口。
+
+当前数据仍然是“构建时生成的静态快照”，这是 Hugo 静态站点的预期工作方式，不是把数据写死在页面中。部署工作流已增加每日定时构建，合并到 `main` 后会自动更新账号数据；也可以手动运行 workflow 立即刷新。没有引入 Google Analytics、Clarity、不蒜子或其它访问统计服务。
 
 ## 部署到 GitHub Pages
 

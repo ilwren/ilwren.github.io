@@ -9,6 +9,8 @@ on:
       # until the branch is merged or reverted.
       - arena/01a0fb3c-ilwren-github-io
   workflow_dispatch:
+  schedule:
+    - cron: "17 0 * * *" # Refresh the account-wide contribution snapshot daily.
 
 permissions:
   contents: read
@@ -46,9 +48,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Prepare GitHub commit activity
+      - name: Prepare GitHub account activity
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTIVITY_ACCOUNT: ilwren
         run: ./scripts/fetch-github-activity.sh
 
       - name: Build
