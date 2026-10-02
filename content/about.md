@@ -16,6 +16,10 @@ lastmod: 2026-10-02T00:00:00+00:00
 
 {{< projectCard title="Ilwren 技术博客" description="一个面向 .NET 技术实践与 Vibe Coding 过程记录的静态博客。" tech=".NET,C#,Hugo,GitHub Pages" link="https://github.com/ilwren/ilwren.github.io" >}}
 
+## GitHub 提交活动
+
+{{< githubActivity repo="ilwren/ilwren.github.io" >}}
+
 ## 文章中的 AI 协作记录
 
 后续涉及 AI 辅助开发的文章，会记录工具、模型、验证状态和人工修改过程：

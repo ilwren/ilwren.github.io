@@ -379,7 +379,7 @@ comment:
     zh-TW: 說些什麼吧！
     ja: コメントを残す
     pt-BR: Deixe um comentário
-  default: waline # default comment system, when you enable multiple comment systems
+  default: utterances # GitHub Issues comment system
 
 # valine comment system. https://valine.js.org
 # version 1.5.1
@@ -462,9 +462,9 @@ disqus:
 
 # https://utteranc.es
 utterances:
-  enable: false
-  repo: owner/repo # Change this to "Your GitHub Username/The Repository Name" used for storing blog comments
-  issue_term: title
+  enable: true
+  repo: ilwren/ilwren.github.io
+  issue_term: pathname
   theme: auto # auto means to automatically adapt to dark and light themes, you can also use specific themes like github-light, github-dark, preferred-color-scheme, etc.
 
 # https://beaudar.lipk.org/
@@ -950,9 +950,178 @@ injector:
       [data-theme="dark"] .ai-trace {
         background: linear-gradient(135deg, rgba(58, 40, 96, 0.8), rgba(81, 44, 78, 0.7));
       }
+
+      .github-activity {
+        margin: 24px 0;
+        padding: 22px 24px;
+        border: 1px solid rgba(120, 80, 211, 0.18);
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 100% 0, rgba(255, 183, 224, 0.2), transparent 34%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(238, 225, 255, 0.72));
+        box-shadow: 0 10px 26px rgba(80, 48, 130, 0.08);
+      }
+
+      .github-activity-header,
+      .github-activity-summary,
+      .github-activity-legend {
+        display: flex;
+        align-items: center;
+      }
+
+      .github-activity-header {
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .github-activity-header a {
+        color: var(--color-link);
+        font-size: 0.84em;
+        text-decoration: none;
+      }
+
+      .github-activity-kicker {
+        color: var(--color-link);
+        font-size: 0.72em;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .github-activity-title {
+        margin: 6px 0 0;
+        color: var(--site-header-ink);
+        font-size: 1.35em;
+      }
+
+      .github-activity-summary {
+        gap: 8px;
+        margin: 16px 0;
+        color: var(--color-default);
+        font-size: 0.9em;
+      }
+
+      .github-activity-summary strong {
+        color: var(--color-link);
+        font-size: 1.1em;
+      }
+
+      .github-activity-dot {
+        opacity: 0.45;
+      }
+
+      .github-activity-scroll {
+        overflow-x: auto;
+        padding: 5px 0 10px;
+      }
+
+      .github-activity-grid {
+        display: grid;
+        grid-template-rows: repeat(7, 11px);
+        grid-auto-flow: column;
+        grid-auto-columns: 11px;
+        gap: 4px;
+        min-width: 780px;
+      }
+
+      .github-activity-cell,
+      .github-activity-legend i {
+        display: block;
+        width: 11px;
+        height: 11px;
+        border-radius: 3px;
+        background: var(--red-5);
+      }
+
+      .github-activity-cell {
+        transition: transform 0.15s, outline 0.15s;
+      }
+
+      .github-activity-cell:hover {
+        outline: 2px solid var(--color-link);
+        transform: scale(1.18);
+      }
+
+      .github-activity-cell.level-0,
+      .github-activity-legend .level-0 {
+        background: rgba(120, 80, 211, 0.09);
+      }
+
+      .github-activity-cell.level-1,
+      .github-activity-legend .level-1 {
+        background: #dfd0fa;
+      }
+
+      .github-activity-cell.level-2,
+      .github-activity-legend .level-2 {
+        background: #c6adf4;
+      }
+
+      .github-activity-cell.level-3,
+      .github-activity-legend .level-3 {
+        background: #9e7ae8;
+      }
+
+      .github-activity-cell.level-4,
+      .github-activity-legend .level-4 {
+        background: #5836a3;
+      }
+
+      .github-activity-legend {
+        justify-content: flex-end;
+        gap: 5px;
+        color: var(--color-default);
+        opacity: 0.72;
+        font-size: 0.76em;
+      }
+
+      .github-activity-legend i {
+        width: 10px;
+        height: 10px;
+      }
+
+      .github-activity-note {
+        margin: 13px 0 0;
+        color: var(--color-default);
+        opacity: 0.72;
+        font-size: 0.78em;
+      }
+
+      [data-theme="dark"] .github-activity {
+        border-color: rgba(198, 168, 255, 0.2);
+        background:
+          radial-gradient(circle at 100% 0, rgba(225, 121, 191, 0.14), transparent 34%),
+          linear-gradient(135deg, rgba(58, 40, 96, 0.72), rgba(42, 29, 64, 0.92));
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+      }
+
+      [data-theme="dark"] .github-activity-cell.level-0,
+      [data-theme="dark"] .github-activity-legend .level-0 {
+        background: rgba(198, 168, 255, 0.09);
+      }
+
+      [data-theme="dark"] .github-activity-cell.level-1,
+      [data-theme="dark"] .github-activity-legend .level-1 {
+        background: #5b4387;
+      }
+
+      [data-theme="dark"] .github-activity-cell.level-2,
+      [data-theme="dark"] .github-activity-legend .level-2 {
+        background: #8065b8;
+      }
+
+      [data-theme="dark"] .github-activity-cell.level-3,
+      [data-theme="dark"] .github-activity-legend .level-3 {
+        background: #aa8cdd;
+      }
+
+      [data-theme="dark"] .github-activity-cell.level-4,
+      [data-theme="dark"] .github-activity-legend .level-4 {
+        background: #d7c5ff;
+      }
     </style>
   body_begin: # Inject code snippet right after <body>
-  body_end: # Inject code snippet right before </body>
+  body_end: |
+    <script src="/js/github-activity.js" defer></script>
   sidebar_begin: # Inject code snippet right after <aside>
   sidebar_end: # Inject code snippet right before </aside>
 

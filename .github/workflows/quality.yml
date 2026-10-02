@@ -33,5 +33,10 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      - name: Prepare GitHub commit activity
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./scripts/fetch-github-activity.sh
+
       - name: Build site
         run: hugo --gc --minify --baseURL "https://example.org/"

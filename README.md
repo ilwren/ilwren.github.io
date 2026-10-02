@@ -50,8 +50,32 @@ hugo server -D
 - `techStack`：技术栈标签。
 - `projectCard`：项目展示卡片。
 - `aiTrace`：记录 Vibe Coding 使用的工具、模型和验证状态。
+- `githubActivity`：显示 `ilwren/ilwren.github.io` 近 52 周的 GitHub commit 活动。
 
 创建新文章时，`archetypes/default.md` 会自动提供分类、标签、系列、.NET 版本、代码仓库和 AI 协作字段。
+
+## GitHub 评论（Utterances）
+
+文章评论使用 [Utterances](https://utteranc.es/)，评论会保存为 GitHub Issues，不需要 OAuth 客户端密钥，也不会接入访问统计服务。当前关联仓库是 `ilwren/ilwren.github.io`，并按文章路径（`pathname`）关联 Issue，主题会自动跟随博客的浅色或深色模式。
+
+首次启用前，请在 GitHub 仓库中确认：
+
+1. 仓库是公开仓库，并已开启 **Issues**。
+2. 安装 [Utterances GitHub App](https://github.com/apps/utterances)。
+3. 授权 Utterances 为文章创建或关联 Issues。
+
+评论功能由主题已有的站点层配置加载，配置入口是 `config/_default/params.yml` 的 `comment` 和 `utterances` 字段。若改用 GitHub Discussions，可以切换到 Giscus，但需要从 `giscus.app` 获取 `repoId` 和 `categoryId`。
+
+## GitHub Commit 统计
+
+关于页的 GitHub 活动组件展示目标仓库最近一年的：
+
+- 提交总数；
+- 有提交的周数；
+- 52 周提交活动图；
+- GitHub 仓库链接。
+
+每次 GitHub Actions 构建都会调用公开的 GitHub REST API `stats/commit_activity`，把结果生成到构建产物中的 `data/github-commit-activity.json`，再由本地 `static/js/github-activity.js` 绘图。访客浏览器不会直接请求 GitHub API，也未引入 Google Analytics、Clarity、不蒜子或其它访问统计服务。统计 API 偶尔会返回 `202` 表示 GitHub 正在计算数据，工作流会重试；若仍不可用，本次构建会使用空快照，下一次构建会再次获取。
 
 ## 部署到 GitHub Pages
 
@@ -72,4 +96,4 @@ hugo server -D
 
 工作流会递归检出主题 submodule，使用 Hugo Extended，生成 `public/`，再通过 Pages artifact 发布。日后只需将文章放入 `content/post/` 并推送即可。
 
-> 当前 Arena 工作分支是 `arena/01a0fb3c-ilwren-github-io`。在本地开发分支上完成修改后，合并到 `main` 才会触发上面的部署工作流。
+> 当前 Arena 工作分支是 `arena/01a0fb3c-ilwren-github-io`。在本地开发分支上完成修改后，合并到 `main` 才会触发上面的部署工作流。正式合并前保留该分支的 Pages 预览配置；合并并确认 `main` 部署成功后，删除 `hugo.yml` 中的临时分支触发器和 `github-pages-preview` 环境配置，再提交到 `main`，最后删除远端临时分支。
