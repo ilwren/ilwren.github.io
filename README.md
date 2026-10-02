@@ -21,11 +21,37 @@ hugo server -D
 - 移除了菜单、页脚和返回顶部按钮中的太极符号，改用紫色星芒图标；页脚不再显示主题原作者标识。
 - 已启用本地星芒加载图标、首页分类卡片、返回顶部和页面动画；搜索、评论、赞助等需要第三方账号的功能仍保持关闭。
 - 暂时关闭横幅图片和文章默认封面；页首使用 CSS 渐变作为占位背景。
-- `static/images/cover-placeholder.svg` 只是本地占位素材，不是参考图；参考图片没有复制或上传到仓库。
+- `static/avatar/avatar.png` 使用 main 分支提供的角色头像；配色参考图只用于取色，没有作为背景图上传。
+- `static/images/cover-placeholder.svg` 是无角色的本地文章封面占位素材。
 - 已关闭不蒜子、百度统计、Google Analytics、Clarity 等统计服务；页脚保留的字数和阅读时间是 Hugo 本地构建数据，不会请求统计服务。
 - 主题源码没有直接修改，颜色通过 `internal_theme` 和 `injector` 覆盖，后续更新 submodule 更容易合并；第三方依赖镜像在站点数据中改为 jsDelivr，避免运行时请求区域性 `.cn` 镜像。
 
 颜色入口主要在 `config/_default/params.yml` 的 `internal_theme` 和 `injector.head_end`。如果需要换成最终参考图，只要把 `banner` 改为图片路径，并按需把 `cover` 改为图片路径即可。
+
+## 自定义组件
+
+站点提供了几个适合技术文章的 shortcode：
+
+```markdown
+{{< techStack items=".NET 8,C#,ASP.NET Core,EF Core" >}}
+
+{{< projectCard
+  title="示例项目"
+  description="项目说明"
+  tech=".NET 8,Docker,GitHub Actions"
+  link="https://github.com/your-name/your-repo"
+>}}
+
+{{< aiTrace tool="Claude Code" model="按文章记录" status="verified" >}}
+记录提示词、人工修改、测试和安全检查。
+{{< /aiTrace >}}
+```
+
+- `techStack`：技术栈标签。
+- `projectCard`：项目展示卡片。
+- `aiTrace`：记录 Vibe Coding 使用的工具、模型和验证状态。
+
+创建新文章时，`archetypes/default.md` 会自动提供分类、标签、系列、.NET 版本、代码仓库和 AI 协作字段。
 
 ## 部署到 GitHub Pages
 

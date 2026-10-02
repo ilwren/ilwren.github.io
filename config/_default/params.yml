@@ -68,7 +68,7 @@ banner_srcset:
     - src: "images/banner.webp"
       media: "(min-width: 800px)"
 
-avatar: "avatar-placeholder.svg" # replace with the attached character file when it is available to the workspace
+avatar: "avatar.png"
 
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
@@ -794,6 +794,161 @@ injector:
       [data-theme="dark"] .sidebar-menu-link-wrap:hover {
         background: rgba(143, 112, 204, 0.2);
         box-shadow: 0 9px 22px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Reusable content components for .NET and Vibe Coding articles. */
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0 22px;
+      }
+
+      .tech-stack-item {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 4px 11px;
+        border: 1px solid rgba(120, 80, 211, 0.22);
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(238, 225, 255, 0.92), rgba(249, 233, 255, 0.76));
+        color: var(--color-link);
+        font-size: 0.86em;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .project-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin: 22px 0;
+        padding: 22px 24px;
+        overflow: hidden;
+        border: 1px solid rgba(120, 80, 211, 0.18);
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 100% 0, rgba(255, 183, 224, 0.25), transparent 34%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(238, 225, 255, 0.66));
+        box-shadow: 0 10px 26px rgba(80, 48, 130, 0.08);
+        transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      }
+
+      .project-card:hover {
+        border-color: rgba(120, 80, 211, 0.42);
+        box-shadow: 0 14px 30px rgba(113, 69, 196, 0.14);
+        transform: translateY(-2px);
+      }
+
+      .project-card-kicker,
+      .ai-trace-label {
+        color: var(--color-link);
+        font-size: 0.72em;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .project-card-title {
+        margin: 6px 0 8px;
+        color: var(--site-header-ink);
+        font-size: 1.35em;
+      }
+
+      .project-card-description {
+        margin: 0;
+        color: var(--color-default);
+        opacity: 0.86;
+      }
+
+      .project-card-tech {
+        margin: 14px 0 0;
+      }
+
+      .project-card-link {
+        align-self: flex-start;
+        padding: 8px 13px;
+        border-radius: 10px;
+        background: var(--color-link);
+        color: #fff !important;
+        font-size: 0.9em;
+        font-weight: 700;
+        text-decoration: none !important;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .project-card-link:hover {
+        box-shadow: 0 6px 16px rgba(113, 69, 196, 0.24);
+        transform: translateY(-1px);
+      }
+
+      .ai-trace {
+        margin: 22px 0;
+        padding: 18px 20px;
+        border-left: 4px solid #b06ce8;
+        border-radius: 14px;
+        background: linear-gradient(135deg, rgba(246, 239, 255, 0.9), rgba(255, 239, 249, 0.84));
+        box-shadow: 0 8px 20px rgba(80, 48, 130, 0.07);
+      }
+
+      .ai-trace-header,
+      .ai-trace-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .ai-trace-header {
+        justify-content: space-between;
+      }
+
+      .ai-trace-status {
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: rgba(120, 80, 211, 0.14);
+        color: var(--color-link);
+        font-size: 0.78em;
+        font-weight: 700;
+      }
+
+      .ai-trace-meta {
+        margin-top: 11px;
+        color: var(--color-default);
+        font-size: 0.9em;
+      }
+
+      .ai-trace-meta span {
+        display: inline-flex;
+        gap: 5px;
+      }
+
+      .ai-trace-meta strong {
+        color: var(--site-header-ink);
+      }
+
+      .ai-trace-content {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed rgba(120, 80, 211, 0.22);
+      }
+
+      [data-theme="dark"] .tech-stack-item {
+        border-color: rgba(198, 168, 255, 0.28);
+        background: rgba(83, 53, 132, 0.48);
+        color: var(--color-link);
+      }
+
+      [data-theme="dark"] .project-card {
+        border-color: rgba(198, 168, 255, 0.2);
+        background:
+          radial-gradient(circle at 100% 0, rgba(225, 121, 191, 0.14), transparent 34%),
+          linear-gradient(135deg, rgba(58, 40, 96, 0.72), rgba(42, 29, 64, 0.92));
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2);
+      }
+
+      [data-theme="dark"] .ai-trace {
+        background: linear-gradient(135deg, rgba(58, 40, 96, 0.8), rgba(81, 44, 78, 0.7));
       }
     </style>
   body_begin: # Inject code snippet right after <body>

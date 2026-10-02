@@ -1,0 +1,16 @@
+{{- $tool := .Get "tool" | default "Vibe Coding" -}}
+{{- $model := .Get "model" | default "未记录" -}}
+{{- $status := .Get "status" | default "待验证" -}}
+<aside class="ai-trace" aria-label="AI 辅助开发记录">
+  <div class="ai-trace-header">
+    <span class="ai-trace-label">AI WORKFLOW</span>
+    <span class="ai-trace-status">{{ $status }}</span>
+  </div>
+  <div class="ai-trace-meta">
+    <span><strong>工具</strong>{{ $tool }}</span>
+    <span><strong>模型</strong>{{ $model }}</span>
+  </div>
+  {{- if .Inner -}}
+    <div class="ai-trace-content">{{ .Inner | .Page.RenderString }}</div>
+  {{- end -}}
+</aside>

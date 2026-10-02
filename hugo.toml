@@ -4,6 +4,12 @@ title = 'Ilwren 的博客'
 theme = 'hugo-theme-reimu'
 
 defaultContentLanguage = 'zh-CN'
+enableRobotsTXT = true
+
+[taxonomies]
+category = 'categories'
+tag = 'tags'
+series = 'series'
 
 [languages]
 [languages.zh-CN]

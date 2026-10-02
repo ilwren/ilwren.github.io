@@ -1,0 +1,37 @@
+name: Hugo quality check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - arena/01a0fb3c-ilwren-github-io
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hugo-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUGO_VERSION: 0.158.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Build site
+        run: hugo --gc --minify --baseURL "https://example.org/"

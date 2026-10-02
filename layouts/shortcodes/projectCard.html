@@ -1,0 +1,26 @@
+{{- $title := .Get "title" | default "未命名项目" -}}
+{{- $description := .Get "description" | default "" -}}
+{{- $link := .Get "link" | default "" -}}
+{{- $tech := split (.Get "tech" | default "") "," -}}
+<article class="project-card">
+  <div class="project-card-body">
+    <div class="project-card-kicker">PROJECT</div>
+    <h3 class="project-card-title">{{ $title }}</h3>
+    {{- if $description -}}
+      <p class="project-card-description">{{ $description }}</p>
+    {{- end -}}
+    {{- if .Get "tech" -}}
+      <div class="tech-stack project-card-tech" role="list" aria-label="项目技术栈">
+        {{- range $tech -}}
+          {{- $item := trim . " " -}}
+          {{- if $item -}}
+            <span class="tech-stack-item" role="listitem">{{ $item }}</span>
+          {{- end -}}
+        {{- end -}}
+      </div>
+    {{- end -}}
+  </div>
+  {{- if $link -}}
+    <a class="project-card-link" href="{{ $link }}" target="_blank" rel="noopener noreferrer">查看项目 <span aria-hidden="true">↗</span></a>
+  {{- end -}}
+</article>

@@ -1,0 +1,9 @@
+{{- $items := split (.Get "items" | default "") "," -}}
+<div class="tech-stack" role="list" aria-label="技术栈">
+  {{- range $items -}}
+    {{- $item := trim . " " -}}
+    {{- if $item -}}
+      <span class="tech-stack-item" role="listitem">{{ $item }}</span>
+    {{- end -}}
+  {{- end -}}
+</div>
