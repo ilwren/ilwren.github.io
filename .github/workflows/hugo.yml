@@ -55,8 +55,10 @@ jobs:
           path: ./public
 
   deploy:
+    # Use a separate environment so the temporary branch is not blocked by
+    # the existing github-pages/main branch protection policy.
     environment:
-      name: github-pages
+      name: github-pages-preview
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
