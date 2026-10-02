@@ -14,6 +14,136 @@ hugo server -D
 
 打开 <http://localhost:1313/> 即可预览。修改 `config/_default/params.yml` 后，Hugo 会自动刷新页面。
 
+## 本地离线预览与部署
+
+Hugo 构建本身不需要 Node.js 或在线服务，但第一次准备仓库时需要下载 Hugo Extended 和主题 submodule。已经准备过一次后，可以完全在本地构建：
+
+```bash
+# 新克隆仓库时一次性获取主题
+git clone --recursive https://github.com/ilwren/ilwren.github.io.git
+cd ilwren.github.io
+
+# 如果是普通 clone，改用这条命令初始化主题
+git submodule update --init --recursive
+
+hugo version                 # 确认包含 extended
+hugo server -D --bind 127.0.0.1 --port 1313
+```
+
+如果需要生成可交给 Nginx、Apache 或其它静态服务器的文件：
+
+```bash
+hugo --gc --minify --baseURL http://127.0.0.1:1313/ --destination public
+python3 -m http.server 1313 --bind 127.0.0.1 --directory public
+```
+
+这个站点没有必须在本地运行的后端。完全离线时需要注意两个可选功能：
+
+- Utterances 评论依赖 `utteranc.es` 和 GitHub，断网时不会显示评论。临时离线预览可以把 `config/_default/params.yml` 中的 `utterances.enable` 改为 `false`，预览结束再恢复。
+- GitHub 账号活动组件只读取站点自己的 `/data/github-account-activity.json`。如果要保留离线图表，可以在有网络时把线上快照下载到本地：
+
+  ```bash
+  mkdir -p static/data
+  curl -fsSL https://ilwren.github.io/data/github-account-activity.json \\
+    -o static/data/github-account-activity.json
+  ```
+
+  如果本地没有这个文件，页面会显示“暂无数据”，不会因为无法访问 GitHub 而阻止 Hugo 构建。第三方贡献 API 只在 GitHub Actions 构建时使用，访客浏览器和本地离线预览都不会直接调用它。
+
+`hugo server` 本身不需要单独的 `--offline` 参数；只要 Hugo Extended、主题 submodule 和要使用的本地资源已经在磁盘上，构建就是离线的。第一次没有主题文件时，离线环境无法初始化 submodule，需要提前把完整仓库和 `themes/hugo-theme-reimu` 一起复制过来。
+
+## 本地图片、封面、背景与 Logo
+
+推荐所有离线可用的图片都放在 `static/` 下。Hugo 会把它们原样复制到站点根目录：
+
+```text
+static/
+├── avatar/avatar.png                    # 当前角色头像，只作为头像使用
+├── images/banner.webp                   # 全局头图
+├── images/site-background.webp          # 可选的网站背景图
+├── images/posts/order-api-cover.webp    # 文章封面
+├── images/posts/order-api-diagram.webp  # 文章正文插图
+├── images/logo.svg                      # 可选导航图标
+└── favicon.ico                          # 浏览器标签页图标
+```
+
+### 头像
+
+当前配置已经使用确认过的头像：
+
+```yaml
+# config/_default/params.yml
+avatar: "avatar.png"
+```
+
+文件必须位于 `static/avatar/avatar.png`。这个文件不要拿来当背景图、文章封面或 Logo。
+
+### 全局头图
+
+当前全局头图是关闭的：
+
+```yaml
+banner: false
+```
+
+准备好本地图片后，将它放到 `static/images/banner.webp`，再改成：
+
+```yaml
+banner: "images/banner.webp"
+```
+
+当前站点为了保持无背景图的角色主题，使用的是 CSS 渐变占位；不改这个配置就不会启用全局头图。
+
+### 单篇文章的封面和头图
+
+可以在文章 Front Matter 中分别指定文章页头图和列表卡片封面：
+
+```yaml
+---
+title: "用 .NET 8 构建一个可测试的订单 Minimal API"
+banner: "/images/posts/order-api-banner.webp"
+cover: "/images/posts/order-api-cover.webp"
+---
+```
+
+对应文件放在 `static/images/posts/`。如果只需要文章页头图，只写 `banner`；如果不希望使用图片，继续保持 `cover: false` 或不填写即可。
+
+### 正文插图
+
+Markdown 直接引用 `static/` 下的路径：
+
+```markdown
+![订单 API 分层示意图](/images/posts/order-api-diagram.webp)
+```
+
+在线图片 URL 也能显示，但不适合离线部署。建议使用 WebP、AVIF 或经过压缩的 PNG，并为每张图片写有意义的 alt 文本。
+
+### Favicon 和 Logo
+
+浏览器标签页图标可以直接覆盖主题默认资源：把 `favicon.ico` 放在 `static/` 根目录。若要使用 SVG，需要同时确认当前主题模板引用了对应文件。这个主题没有单独的全局 `logo` 参数：
+
+- 浏览器上的站点图标使用 `static/favicon.ico`；
+- 导航项目可以使用本地图片作为图标，例如把某一项的 `icon` 设置为 `/images/logo.svg`；
+- 如果要做页首品牌 Logo，需要在站点层覆盖主题 partial 或使用 `injector` 添加 HTML，不建议修改 `themes/hugo-theme-reimu`。
+
+### 背景图片
+
+当前紫色渐变在 `config/_default/params.yml` 的 `injector.head_end` 中定义。如果以后需要加入本地背景图，可以在站点层 CSS 中叠加：
+
+```yaml
+injector:
+  head_end: |
+    <style>
+      #header {
+        background:
+          linear-gradient(rgba(245, 240, 252, 0.78), rgba(245, 240, 252, 0.88)),
+          url("/images/site-background.webp") center / cover no-repeat;
+      }
+    </style>
+```
+
+背景图只会改变页首或页面视觉层，不要把 `static/avatar/avatar.png` 复用为背景素材。当前仓库仍然保持无背景图方案。
+
 ## 当前视觉定制
 
 - 参考图使用薰衣草紫、明紫、珍珠白和少量粉色点缀，替换主题默认的高饱和红色。
