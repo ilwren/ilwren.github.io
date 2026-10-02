@@ -26,7 +26,7 @@ hugo server -D
 
 ## 部署到 GitHub Pages
 
-仓库已包含 `.github/workflows/hugo.yml`。推送到 `main` 后会自动构建并发布：
+仓库已包含 `.github/workflows/hugo.yml`。推送到 `main` 后会自动构建并发布；当前还临时监听 Arena 工作分支，用于上线前预览。注意：同一个 GitHub Pages 站点没有独立的分支预览地址，推送 Arena 分支会暂时替换线上页面。
 
 1. 在 GitHub 仓库打开 **Settings → Pages**。
 2. 在 **Build and deployment → Source** 选择 **GitHub Actions**。
