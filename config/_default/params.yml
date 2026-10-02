@@ -68,7 +68,7 @@ banner_srcset:
     - src: "images/banner.webp"
       media: "(min-width: 800px)"
 
-avatar: "avatar.webp"
+avatar: "avatar-placeholder.svg" # replace with the attached character file when it is available to the workspace
 
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
