@@ -1,20 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
-  <title id="title">Cover placeholder</title>
-  <desc id="desc">A soft teal and warm sand abstract placeholder.</desc>
+  <title id="title">Lavender cover placeholder</title>
+  <desc id="desc">A soft lavender and violet abstract placeholder.</desc>
   <defs>
-    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#dcebe3"/>
-      <stop offset="0.55" stop-color="#f5eee4"/>
-      <stop offset="1" stop-color="#e6d8ca"/>
+    <linearGradient id="lavender" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eee1ff"/>
+      <stop offset="0.52" stop-color="#e6d5ff"/>
+      <stop offset="1" stop-color="#f9e9ff"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0.18" cy="0.28" r="0.55">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.62"/>
+    <radialGradient id="halo" cx="0.5" cy="0.2" r="0.62">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.8"/>
       <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="1200" height="700" fill="url(#paper)"/>
-  <rect width="1200" height="700" fill="url(#glow)"/>
-  <circle cx="965" cy="90" r="230" fill="#c97955" fill-opacity="0.12"/>
-  <path d="M0 540C210 430 360 650 580 520s350-20 620 70v110H0z" fill="#3f8f89" fill-opacity="0.14"/>
-  <path d="M0 610c210-90 370 70 590-20 220-90 390-40 610 20v90H0z" fill="#286b68" fill-opacity="0.08"/>
+  <rect width="1200" height="700" fill="url(#lavender)"/>
+  <rect width="1200" height="700" fill="url(#halo)"/>
+  <circle cx="215" cy="188" r="135" fill="#c49dff" fill-opacity="0.2"/>
+  <circle cx="970" cy="105" r="180" fill="#ffb7e0" fill-opacity="0.2"/>
+  <path d="M0 570C180 430 370 640 575 510s370-30 625 70v120H0z" fill="#7850d3" fill-opacity="0.16"/>
+  <path d="M0 635c220-100 370 34 600-35 220-67 390-30 600 25v75H0z" fill="#5836a3" fill-opacity="0.1"/>
+  <g fill="#ffffff" fill-opacity="0.8">
+    <path d="M168 112l10 24 24 10-24 10-10 24-10-24-24-10 24-10z"/>
+    <path d="M1000 330l8 19 19 8-19 8-8 19-8-19-19-8 19-8z"/>
+    <path d="M820 155l6 14 14 6-14 6-6 14-6-14-14-6 14-6z"/>
+  </g>
 </svg>

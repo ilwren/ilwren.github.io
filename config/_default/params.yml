@@ -109,7 +109,7 @@ footer:
   since: 2020 # 2020-current year
   powered: true
   count: true
-  busuanzi: true
+  busuanzi: false
   icon:
     url: "../images/taichi.png" # this path is relative to the css/main.css, so it needs to go up one level to reach the images folder
     rotate: true
@@ -274,6 +274,7 @@ dark_mode:
 # Analytics
 ########################################
 
+# No visitor analytics or third-party statistics are enabled.
 baidu_analytics: false
 google_analytics: false
 clarity: false
@@ -656,72 +657,73 @@ injector:
   head_end: |
     <style>
       /*
-       * Site palette: misty teal, warm sand and paper white.
-       * This is intentionally injected after Reimu's compiled CSS so the
-       * theme submodule can be upgraded without editing it.
+       * Reference palette: lavender, violet, pearl white and a small blush accent.
+       * This override stays in the site config so the Reimu submodule remains clean.
        */
       :root {
-        --color-default: #2d3b3a;
-        --color-background: #f3f0e9;
-        --color-code-background: #edf2ef;
-        --color-header-background: rgba(250, 248, 242, 0.92);
-        --color-footer-background: #e7eee9;
-        --color-mobile-nav-background: #faf8f2;
-        --color-wrap: #fffdf8;
-        --color-sticky: #f7eadc;
-        --color-h2-border: #d8e1dc;
-        --color-h2-after: #c97955;
-        --color-meta-shadow: rgba(48, 111, 105, 0.24);
-        --color-hover-shadow: rgba(45, 59, 58, 0.13);
-        --color-link: #2f7772;
-        --site-header-ink: #254f4c;
-        --site-header-soft: #53716c;
+        --color-default: #342847;
+        --color-background: #f5f0fc;
+        --color-code-background: #f1ebff;
+        --color-header-background: rgba(252, 250, 255, 0.92);
+        --color-footer-background: #eee6fa;
+        --color-mobile-nav-background: #fbf9ff;
+        --color-wrap: #fffaff;
+        --color-sticky: #f9e8f6;
+        --color-h2-border: #e4daf6;
+        --color-h2-after: #b06ce8;
+        --color-meta-shadow: rgba(113, 72, 190, 0.24);
+        --color-hover-shadow: rgba(65, 42, 105, 0.13);
+        --color-link: #7145c4;
+        --site-header-ink: #4a2b87;
+        --site-header-soft: #7f64ad;
       }
 
       [data-theme="dark"] {
-        --color-default: #d7e2dd;
-        --color-background: #1c2928;
-        --color-code-background: #223331;
-        --color-header-background: rgba(28, 41, 40, 0.94);
-        --color-footer-background: #172322;
-        --color-mobile-nav-background: #223331;
-        --color-wrap: #243431;
-        --color-sticky: #3a3028;
-        --color-h2-border: #3c514d;
-        --color-h2-after: #d48b68;
-        --color-meta-shadow: rgba(0, 0, 0, 0.28);
-        --color-hover-shadow: rgba(0, 0, 0, 0.28);
-        --color-link: #9ed1bf;
-        --site-header-ink: #dcebe5;
-        --site-header-soft: #aecbc0;
-        --red-0: #a9d4c2;
-        --red-1: #82bfae;
-        --red-2: #a8d8c7;
-        --red-3: #5b8c80;
-        --red-4: rgba(169, 212, 194, 0.28);
-        --red-5: rgba(169, 212, 194, 0.16);
-        --red-5-5: rgba(169, 212, 194, 0.09);
-        --red-6: rgba(169, 212, 194, 0.06);
+        --color-default: #e7dcf8;
+        --color-background: #20152f;
+        --color-code-background: #2b1e41;
+        --color-header-background: rgba(32, 21, 47, 0.94);
+        --color-footer-background: #191124;
+        --color-mobile-nav-background: #2b1e41;
+        --color-wrap: #2b1e41;
+        --color-sticky: #3e2841;
+        --color-h2-border: #4a3863;
+        --color-h2-after: #e28dcc;
+        --color-meta-shadow: rgba(0, 0, 0, 0.3);
+        --color-hover-shadow: rgba(0, 0, 0, 0.3);
+        --color-link: #c6a8ff;
+        --site-header-ink: #f1e8ff;
+        --site-header-soft: #c9b5e8;
+        --red-0: #d7c5ff;
+        --red-1: #b99afa;
+        --red-2: #cdb5ff;
+        --red-3: #8f70cc;
+        --red-4: rgba(215, 197, 255, 0.28);
+        --red-5: rgba(215, 197, 255, 0.16);
+        --red-5-5: rgba(215, 197, 255, 0.09);
+        --red-6: rgba(215, 197, 255, 0.06);
       }
 
       /* The header stays image-free until a real banner is selected. */
       #header {
         overflow: hidden;
         background:
-          radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.72), transparent 30%),
-          radial-gradient(circle at 82% 12%, rgba(201, 121, 85, 0.14), transparent 34%),
-          linear-gradient(135deg, #dcebe3 0%, #f5eee4 52%, #e6d8ca 100%);
+          radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.88), transparent 28%),
+          radial-gradient(circle at 18% 36%, rgba(196, 157, 255, 0.46), transparent 35%),
+          radial-gradient(circle at 84% 18%, rgba(255, 183, 224, 0.38), transparent 34%),
+          linear-gradient(135deg, #eee1ff 0%, #e6d5ff 45%, #f9e9ff 100%);
       }
 
-      #header > img[style*="visibility: hidden"] {
+      #header > img[style*="visibility"] {
         display: none !important;
       }
 
       [data-theme="dark"] #header {
         background:
-          radial-gradient(circle at 18% 32%, rgba(115, 171, 151, 0.16), transparent 30%),
-          radial-gradient(circle at 82% 12%, rgba(212, 139, 104, 0.16), transparent 34%),
-          linear-gradient(135deg, #243b37 0%, #303331 52%, #40362f 100%);
+          radial-gradient(circle at 50% 18%, rgba(205, 173, 255, 0.18), transparent 28%),
+          radial-gradient(circle at 18% 36%, rgba(126, 87, 205, 0.22), transparent 35%),
+          radial-gradient(circle at 84% 18%, rgba(225, 121, 191, 0.18), transparent 34%),
+          linear-gradient(135deg, #30204b 0%, #251b3b 48%, #3c234c 100%);
       }
 
       #header-outer {
@@ -740,7 +742,7 @@ injector:
 
       #header-nav {
         background: var(--color-header-background);
-        box-shadow: 0 1px 0 rgba(47, 119, 114, 0.12), 0 6px 20px rgba(45, 59, 58, 0.08);
+        box-shadow: 0 1px 0 rgba(126, 87, 205, 0.14), 0 6px 20px rgba(65, 42, 105, 0.08);
       }
 
       #header-nav:hover {
@@ -748,11 +750,11 @@ injector:
       }
 
       .post-cover {
-        background: linear-gradient(135deg, #dcebe3, #f1e2d5) !important;
+        background: linear-gradient(135deg, #e5d6ff, #f8e4f7) !important;
       }
 
       [data-theme="dark"] .post-cover {
-        background: linear-gradient(135deg, #294641, #493a32) !important;
+        background: linear-gradient(135deg, #3a2860, #512c4e) !important;
       }
     </style>
   body_begin: # Inject code snippet right after <body>
@@ -832,7 +834,7 @@ player:
 
 pangu:
   # more information: https://github.com/vinta/pangu.js
-  enable: true  # enable pangu.js to add space between Chinese and English
+  enable: false  # avoid loading the optional third-party language helper
 
 ########################################
 # Theme
@@ -847,64 +849,64 @@ material_theme:
   enable: false # enable material_theme to generate dynamic color schemes based on the banner image
 
 internal_theme:
-  # Reimu keeps these names for compatibility; the values form a muted
-  # teal / warm-sand palette instead of the original bright red theme.
+  # Reimu keeps these names for compatibility; values follow the attached
+  # lavender / violet reference palette without importing the reference image.
   light:
-    --red-0: '#286b68'
-    --red-1: '#3f8f89'
-    --red-2: '#70b2a8'
-    --red-3: '#a8d1c7'
-    --red-4: '#cfe4dc'
-    --red-5: '#e8f0eb'
-    --red-5-5: '#f0f5f0'
-    --red-6: '#f6faf7'
-    --color-red-6-shadow: 'rgba(63, 143, 137, 0.35)'
-    --color-red-3-shadow: 'rgba(63, 143, 137, 0.2)'
+    --red-0: '#5836a3'
+    --red-1: '#7850d3'
+    --red-2: '#9e7ae8'
+    --red-3: '#c6adf4'
+    --red-4: '#dfd0fa'
+    --red-5: '#eee7ff'
+    --red-5-5: '#f4efff'
+    --red-6: '#faf8ff'
+    --color-red-6-shadow: 'rgba(120, 80, 211, 0.34)'
+    --color-red-3-shadow: 'rgba(120, 80, 211, 0.2)'
 
-    --highlight-nav: '#e7efeb'
-    --highlight-scrollbar: '#b7cbc3'
-    --highlight-background: '#f5f7f3'
-    --highlight-selection: '#b7d8ce88'
-    --highlight-foreground: '#2d3b3a'
-    --highlight-comment: '#778b84'
-    --highlight-red: '#b85c55'
-    --highlight-orange: '#b66e43'
-    --highlight-yellow: '#9a782c'
-    --highlight-green: '#4e7b5d'
-    --highlight-aqua: '#2f7772'
-    --highlight-blue: '#426786'
-    --highlight-purple: '#795f86'
-    --highlight-deletion: '#a94f53'
-    --highlight-deletion-bg: '#fae9e4'
-    --highlight-addition: '#4e765a'
-    --highlight-addition-bg: '#e7f1e8'
+    --highlight-nav: '#f0e9ff'
+    --highlight-scrollbar: '#c9b7ef'
+    --highlight-background: '#f7f4fc'
+    --highlight-selection: '#cdb5ff88'
+    --highlight-foreground: '#342847'
+    --highlight-comment: '#88799f'
+    --highlight-red: '#bd5a9e'
+    --highlight-orange: '#c97654'
+    --highlight-yellow: '#a07b2f'
+    --highlight-green: '#6b8e7a'
+    --highlight-aqua: '#7053c4'
+    --highlight-blue: '#5a67b8'
+    --highlight-purple: '#8a4ac0'
+    --highlight-deletion: '#ae4f76'
+    --highlight-deletion-bg: '#f9e4ef'
+    --highlight-addition: '#5f866f'
+    --highlight-addition-bg: '#e6f2e9'
 
   dark:
-    --red-0: '#a9d4c2'
-    --red-1: '#82bfae'
-    --red-2: '#a8d8c7'
-    --red-3: '#5b8c80'
-    --red-4: 'rgba(169, 212, 194, 0.28)'
-    --red-5: 'rgba(169, 212, 194, 0.16)'
-    --red-5-5: 'rgba(169, 212, 194, 0.09)'
-    --red-6: 'rgba(169, 212, 194, 0.06)'
-    --color-red-6-shadow: 'rgba(130, 191, 174, 0.35)'
-    --color-red-3-shadow: 'rgba(130, 191, 174, 0.2)'
+    --red-0: '#d7c5ff'
+    --red-1: '#b99afa'
+    --red-2: '#cdb5ff'
+    --red-3: '#8f70cc'
+    --red-4: 'rgba(215, 197, 255, 0.28)'
+    --red-5: 'rgba(215, 197, 255, 0.16)'
+    --red-5-5: 'rgba(215, 197, 255, 0.09)'
+    --red-6: 'rgba(215, 197, 255, 0.06)'
+    --color-red-6-shadow: 'rgba(185, 154, 250, 0.35)'
+    --color-red-3-shadow: 'rgba(185, 154, 250, 0.2)'
 
-    --highlight-nav: '#263a37'
-    --highlight-scrollbar: '#526963'
-    --highlight-background: '#1f2d2b'
-    --highlight-selection: '#6a988b55'
-    --highlight-foreground: '#d7e2dd'
-    --highlight-comment: '#92a9a0'
-    --highlight-red: '#ee948b'
-    --highlight-orange: '#e5a06e'
-    --highlight-yellow: '#e3c176'
-    --highlight-green: '#94c99b'
-    --highlight-aqua: '#9ed1bf'
-    --highlight-blue: '#9cc4e2'
-    --highlight-purple: '#c2a7d3'
-    --highlight-deletion: '#f0a29e'
-    --highlight-deletion-bg: '#552b2b'
-    --highlight-addition: '#a5d6ad'
-    --highlight-addition-bg: '#203c2a'
+    --highlight-nav: '#30234b'
+    --highlight-scrollbar: '#66548a'
+    --highlight-background: '#251b38'
+    --highlight-selection: '#a78bda55'
+    --highlight-foreground: '#e7dcf8'
+    --highlight-comment: '#a99abf'
+    --highlight-red: '#f0a0ce'
+    --highlight-orange: '#f0ad82'
+    --highlight-yellow: '#e6c77e'
+    --highlight-green: '#a7d5b1'
+    --highlight-aqua: '#c6a8ff'
+    --highlight-blue: '#aab9ff'
+    --highlight-purple: '#d4a8f2'
+    --highlight-deletion: '#f0a1b7'
+    --highlight-deletion-bg: '#54283e'
+    --highlight-addition: '#b0e0b8'
+    --highlight-addition-bg: '#243d2d'

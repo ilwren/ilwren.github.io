@@ -16,11 +16,12 @@ hugo server -D
 
 ## 当前视觉定制
 
-- 以低饱和的雾青、暖沙色和纸张白替换主题默认的高饱和红色。
+- 参考图使用薰衣草紫、明紫、珍珠白和少量粉色点缀，替换主题默认的高饱和红色。
 - 同时调整了浅色、深色模式、代码高亮、链接、卡片、导航栏和阴影颜色。
 - 暂时关闭横幅图片和文章默认封面；页首使用 CSS 渐变作为占位背景。
 - `static/images/cover-placeholder.svg` 只是本地占位素材，不是参考图；参考图片没有复制或上传到仓库。
-- 主题源码没有直接修改，颜色通过 `internal_theme` 和 `injector` 覆盖，后续更新 submodule 更容易合并。
+- 已关闭不蒜子、百度统计、Google Analytics、Clarity 等统计服务；页脚保留的字数和阅读时间是 Hugo 本地构建数据，不会请求统计服务。
+- 主题源码没有直接修改，颜色通过 `internal_theme` 和 `injector` 覆盖，后续更新 submodule 更容易合并；第三方依赖镜像在站点数据中改为 jsDelivr，避免运行时请求区域性 `.cn` 镜像。
 
 颜色入口主要在 `config/_default/params.yml` 的 `internal_theme` 和 `injector.head_end`。如果需要换成最终参考图，只要把 `banner` 改为图片路径，并按需把 `cover` 改为图片路径即可。
 
